@@ -155,7 +155,13 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+  if (str.indexOf(value) === -1) {
+    return str;
+  }
+  const startIndex = str.indexOf(value);
+  const endIndex = startIndex + value.length;
+
+  return str.slice(0, startIndex) + str.slice(endIndex);
 }
 
 /**
@@ -170,8 +176,15 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  if (str.indexOf(value) === -1) {
+    return str;
+  }
+
+  const startIndex = str.lastIndexOf(value);
+  const endIndex = startIndex + value.length;
+
+  return str.slice(0, startIndex) + str.slice(endIndex);
 }
 
 /**
@@ -186,8 +199,18 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  if (!str || !str.length) {
+    return 0;
+  }
+
+  let res = 0;
+
+  for (let i = 0; i < str.length; i += 1) {
+    res += str.charCodeAt(i);
+  }
+
+  return res;
 }
 
 /**
